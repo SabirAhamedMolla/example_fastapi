@@ -87,8 +87,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: deploy to ubuntu server
-        # uses: appleboy/ssh-action@master
-        uses: appleboy/ssh-action@v0.1.9
+        uses: appleboy/ssh-action@master
+        # uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{secrets.PROD_HOST}}
           username: ${{secrets.PROD_USERNAME}}
@@ -96,5 +96,5 @@ jobs:
           script: |
             cd app/src
             git pull
-            sudo systemctl restart api
+            echo ${{secrets.PROD_PASSWORD}} | sudo -S systemctl restart api
         
